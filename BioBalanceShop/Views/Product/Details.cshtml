@@ -1,0 +1,49 @@
+﻿@model ProductDetailsServiceModel
+
+@{
+    ViewBag.Title = "Product Details";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/productDetails.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/messages.css" asp-append-version="true" />
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<partial name="_SiteMessagePartial" />
+
+<div class="flex-container">
+    <div class="flex-item-left">
+        <img class="responsive" style="width: 20rem;" src="@Model.ImageUrl" alt="Product Front Image">
+    </div>
+    <div class="flex-item-right">
+        <h2><b>@Model.Title</b></h2>
+        <h5>@Model.Subtitle</h5>
+        <p class="productPrice">
+            <b>
+                @if (Model.CurrencyIsSymbolPrefix)
+                {
+                    @Model.CurrencySymbol
+                }
+                @String.Format("{0:f2}", Model.Price)
+                @if (!Model.CurrencyIsSymbolPrefix)
+                {
+                    @Model.CurrencySymbol
+                }
+            </b>
+        </p>
+        <form asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@Model.Id" asp-route-productInfo="@Model.GetProductInfo()" method="Post">
+            <input name="quantity" type="number" max="@Model.QuantityInStock" min="1" value="@Model.QuantityToOrder" />
+            <input type="submit" value="Add To Cart" class="btn btn-primary" />
+        </form>
+        <p>@Model.Description</p>
+        <br />
+        <p>@Model.Ingredients</p>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/messages.js"></script>
+}

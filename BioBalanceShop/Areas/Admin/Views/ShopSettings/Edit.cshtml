@@ -1,0 +1,52 @@
+﻿@model AdminShopSettingsFormModel
+
+@{
+    ViewBag.Title = "Edit Shop Settings";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/shopSettings.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/messages.css" asp-append-version="true" />
+}
+
+<partial name="_SiteMessagePartial" />
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="flexContainer row">
+    <div class="flexItem">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="@Model.CurrencyId">Currency:</label>
+                <select asp-for="@Model.CurrencyId" class="form-control">
+                    @foreach (var currency in Model.Currencies)
+                    {
+                        if (currency.Id == @Model.CurrencyId)
+                        {
+                            <option value="@currency.Id" selected>@currency.CurrencyCode ( @currency.CurrencySymbol )</option>
+                        }
+                        else
+                        {
+                            <option value="@currency.Id">@currency.CurrencyCode ( @currency.CurrencySymbol )</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="@Model.CurrencyId" class="small text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="@Model.ShippingFeeRate"></label>
+                <input asp-for="@Model.ShippingFeeRate" class="form-control" placeholder="Shipping fee rate as a percentage of order amount...">
+                <span asp-validation-for="@Model.ShippingFeeRate" class="small text-danger"></span>
+            </div>
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/messages.js"></script>
+}

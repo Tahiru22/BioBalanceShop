@@ -1,0 +1,32 @@
+﻿@model AdminOrderAllServiceModel
+
+<tr>
+    <td>
+        <label>@Model.OrderNumber</label>
+    </td>
+    <td>
+        <label>@Model.OrderDate.ToShortDateString()</label>
+    </td>
+    <td>
+        <label>@Model.OrderItemsCount items</label>
+    </td>
+    <td>
+        <label>
+            @if (Model.Currency.CurrencyIsSymbolPrefix)
+            {
+                @Model.Currency.CurrencySymbol
+            }
+            @String.Format("{0:f2}", Model.TotalAmount)
+            @if (!Model.Currency.CurrencyIsSymbolPrefix)
+            {
+                @Model.Currency.CurrencySymbol
+            }
+        </label>
+    </td>
+    <td>
+        <label>@Model.Status</label>
+    </td>
+    <td>
+        <a asp-area="Admin" asp-controller="Order" asp-action="EditStatus" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit Status</a>
+    </td>
+</tr>

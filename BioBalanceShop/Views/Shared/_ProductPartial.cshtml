@@ -1,0 +1,26 @@
+﻿@model ProductServiceModel
+@inject IProductService productService
+
+<div class="flex-item">
+    <a asp-area="" asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id" asp-route-productInfo="@Model.GetProductInfo()">
+        <div class="img-container">
+            <img class="responsive " width="300" height="500" src="@Model.ImageUrl" alt="Product Image">
+        </div>
+        <div class="prod-info">
+            <h4>@Model.Title</h4>
+            <h6>
+                <b>
+                    @if (Model.Currency.CurrencyIsSymbolPrefix)
+                    {
+                        @Model.Currency.CurrencySymbol
+                    }
+                    @String.Format("{0:f2}", Model.Price)
+                    @if (!Model.Currency.CurrencyIsSymbolPrefix)
+                    {
+                        @Model.Currency.CurrencySymbol
+                    }
+                </b>
+            </h6>
+        </div>
+    </a>
+</div>

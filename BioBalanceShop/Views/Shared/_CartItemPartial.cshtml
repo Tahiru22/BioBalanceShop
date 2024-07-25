@@ -1,0 +1,46 @@
+﻿@model CartIndexProductModel
+
+<tr>
+    <td>
+        <label>
+            <img class="card-img-top" src="@Model.ImageURL" alt="Product Image" width="100" height="100">
+        </label>
+    </td>
+    <td>
+        <label>@Model.Title</label>
+    </td>
+    <td>
+        <label>
+            @if (Model.Currency.CurrencyIsSymbolPrefix)
+            {
+                @Model.Currency.CurrencySymbol
+            }
+            @String.Format("{0:f2}", Model.Price)
+            @if (!Model.Currency.CurrencyIsSymbolPrefix)
+            {
+                @Model.Currency.CurrencySymbol
+            }
+        </label>
+    </td>
+    <td>
+        <label><input name="productQuantities[@Model.ProductId]" type="number" max="@Model.QuantityInStock" min="1" value="@Model.QuantityToOrder" /></label>
+    </td>
+    <td>
+        <label>
+            @if (Model.Currency.CurrencyIsSymbolPrefix)
+            {
+                @Model.Currency.CurrencySymbol
+            }
+            @String.Format("{0:f2}", Model.Price * Model.QuantityToOrder)
+            @if (!Model.Currency.CurrencyIsSymbolPrefix)
+            {
+                @Model.Currency.CurrencySymbol
+            }
+        </label>
+    </td>
+    <td>
+        <label>
+            <input type="checkbox" name="RemovedProductIds" value="@Model.ProductId" /> Remove
+        </label>
+    </td>
+</tr>

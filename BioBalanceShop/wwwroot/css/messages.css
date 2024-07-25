@@ -1,0 +1,39 @@
+﻿/*Error messages on custom error pages*/
+
+img.img-thumbnail {
+    border: none !important;
+    max-width: 350px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+.shopMsg {
+    color: #214f21;
+}
+
+
+/*Site Messages*/
+
+#siteMsg {
+    color: white;
+    background-color: #6ab654;
+    padding: 10px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.5em;
+    display: none;
+    text-align: center;
+}
+
+    #siteMsg > span {
+        color: #ffffff;
+        float: right;
+        padding-right: 5px;
+    }
+
+        #siteMsg > span:hover {
+            color: #6ab654;
+            cursor: pointer;
+        }

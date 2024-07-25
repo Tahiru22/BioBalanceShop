@@ -1,0 +1,73 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+#site-logo {
+    max-width: 350px;
+    max-height: auto;
+}
+
+.btn-primary, a.text-danger, button.text-danger {
+    background-color: #214f21;
+    color: #ffffff;
+    border-color: #214f21;
+}
+
+    .btn-primary:hover, .btn-primary:active, a.text-danger:hover, button.text-danger:hover {
+        background-color: #6ab654;
+        color: #ffffff;
+        border-color: #6ab654;
+    }
+
+    .btn-primary.disabled, .btn-primary:disabled {
+        border: 1px solid #f1f1f1;
+        background-color: #f1f1f1;
+        color: #6ab654;
+    }
+
+    img.responsive {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+    }
+
+
+a.text-warning, button.text-warning {
+    background-color: #ffffff;
+    color: #214f21;
+    border: 2px solid #214f21;
+}
+
+    a.text-warning:hover, button.text-warning:hover {
+        background-color: #214f21;
+        color: #ffffff;
+        border: 2px solid #214f21;
+    }
+
+    input[type="text"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
+        border: 1px solid #214f21!important;
+        box-shadow: 0px 0px 5px #214f21!important;
+    }
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #edf7ed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #214f21!important;
+}

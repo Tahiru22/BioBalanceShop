@@ -1,0 +1,140 @@
+﻿@model OrderDetailsServiceModel
+
+@{
+    ViewBag.Title = "Order Details";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/orderDetails.css" asp-append-version="true" />
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="container" style="display:inline">
+    <div class="row">
+        <h4>Order Information:</h4>
+        <div class="card col-8 border-0">
+            <p>Order Number: <b>@Model.OrderNumber</b></p>
+            <p>Order Date: <b>@Model.OrderDate.ToShortDateString()</b></p>
+            <p>Order Status: <b>@Model.Status</b></p>
+            <p>Order Items Amount:
+                <b>
+                    @if (Model.Currency.CurrencyIsSymbolPrefix)
+                    {
+                        @Model.Currency.CurrencySymbol
+                    }
+                    @String.Format("{0:f2}", Model.Amount)
+                    @if (!Model.Currency.CurrencyIsSymbolPrefix)
+                    {
+                        @Model.Currency.CurrencySymbol
+                    }
+                </b>
+            </p>
+            <p>Shipping Fee:
+                <b>
+                    @if (Model.Currency.CurrencyIsSymbolPrefix)
+                    {
+                        @Model.Currency.CurrencySymbol
+                    }
+                    @String.Format("{0:f2}", Model.ShippingFee)
+                    @if (!Model.Currency.CurrencyIsSymbolPrefix)
+                    {
+                        @Model.Currency.CurrencySymbol
+                    }
+                </b>
+            </p>
+            <p>
+                Total Amount:
+                <b>
+                    @if (Model.Currency.CurrencyIsSymbolPrefix)
+                    {
+                        @Model.Currency.CurrencySymbol
+                    }
+                    @String.Format("{0:f2}", Model.TotalAmount)
+                    @if (!Model.Currency.CurrencyIsSymbolPrefix)
+                    {
+                        @Model.Currency.CurrencySymbol
+                    }
+                </b>
+            </p>
+        </div>
+
+        <br />
+        <hr />
+        <br />
+
+        <h4>Order Recipient:</h4>
+        <div class="card col-8 border-0">
+            <p>Name: @Model.OrderRecipient.FirstName @Model.OrderRecipient.LastName</p>
+            <p>Phone: @Model.OrderRecipient.PhoneNumber</p>
+            <p>Email: @Model.OrderRecipient.EmailAddress</p>
+        </div>
+
+        <br />
+
+        <h4>Ship-to Address:</h4>
+        <div class="card col-8 border-0">
+            <p>@Model.OrderAddress.Street</p>
+            <p>@Model.OrderAddress.PostCode @Model.OrderAddress.City</p>
+            <p>@Model.OrderAddress.Country</p>
+        </div>
+
+        <br />
+        <hr />
+        <br />
+
+        <h4>Order Items:</h4>
+        <div class="card col-8 border-0">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderItems)
+                    {
+                        <tr>
+                            <td><img src="@item.ImageUrl" alt="Order Item Image" width="100" height="100" /></td>
+                            <td>@item.Title</td>
+                            <td>@item.Quantity</td>
+                            <td>
+                                <b>
+                                    @if (Model.Currency.CurrencyIsSymbolPrefix)
+                                    {
+                                        @Model.Currency.CurrencySymbol
+                                    }
+                                    @String.Format("{0:f2}", item.Price)
+                                    @if (!Model.Currency.CurrencyIsSymbolPrefix)
+                                    {
+                                        @Model.Currency.CurrencySymbol
+                                    }
+                                </b>
+                            </td>
+                            <td>
+                                <b>
+                                    @if (Model.Currency.CurrencyIsSymbolPrefix)
+                                    {
+                                        @Model.Currency.CurrencySymbol
+                                    }
+                                    @String.Format("{0:f2}", item.Price * item.Quantity)
+                                    @if (!Model.Currency.CurrencyIsSymbolPrefix)
+                                    {
+                                        @Model.Currency.CurrencySymbol
+                                    }
+                                </b>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+           
+        </div>
+
+    </div>
+</div>

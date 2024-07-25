@@ -1,0 +1,14 @@
+﻿@{
+    var cookieConsent = Context.Request.Cookies[ConsentCookie];
+
+    if ((cookieConsent == "rejected" && ViewBag.Title == "Update Cookie Consent") || 
+    (cookieConsent != "rejected" && cookieConsent != "accepted"))
+    {
+        <div id="cookie-banner">
+            <p>This website uses cookies to ensure you get the best experience.</p>
+
+            <a href="@Url.Action("SetCookieConsent", "CookieBanner", new { consent = "accepted" })">Accept</a>
+            <a href="@Url.Action("SetCookieConsent", "CookieBanner", new { consent = "rejected" })">Reject</a>
+        </div>
+    }
+}

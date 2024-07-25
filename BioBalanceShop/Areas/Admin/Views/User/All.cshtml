@@ -1,0 +1,136 @@
+﻿@model AdminUserAllGetModel
+
+@{
+    ViewBag.Title = "All Users";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/common.css" asp-append-version="true" />
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div>
+    <a asp-area="Admin" asp-controller="User" asp-action="Create" class="btnAdminCreate btn btn-warning mb-2 w-100 p-3 fw-bold">Create User</a>
+</div>
+
+<form method="get">
+    <div class="row">
+        <div class="form-group col-md-3 d-flex justify-content-between">
+            <div class="form-group">
+                <label asp-for="Role"></label>
+                <select asp-for="Role" class="form-control">
+                    <option value="">All</option>
+                    @foreach (var role in Model.Roles)
+                    {
+                        <option value="@role">@role</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label asp-for="SearchTerm"></label>
+            <input asp-for="SearchTerm" class="form-control" placeholder="...">
+        </div>
+
+        <div class="form-group col-md-3">
+            <div class="form-group">
+                <label asp-for="Sorting"></label>
+                <select asp-for="Sorting" class="form-control">
+                    <option value="0">Newest first</option>
+                    <option value="1">Oldest first</option>
+                    <option value="2">Username Ascending</option>
+                    <option value="3">Username Descending</option>
+                    <option value="4">First name Ascending</option>
+                    <option value="5">First name Descending</option>
+                    <option value="6">Last name Ascending</option>
+                    <option value="7">Last name Descending</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group mt-4 p-2">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@{
+    var previousPage = Model.CurrentPage - 1;
+    if (previousPage < 1)
+    {
+        previousPage = 1;
+    }
+
+    var maxPage = Math.Ceiling((double)Model.TotalUsersCount /
+        Model.UsersPerPage);
+}
+
+<div class="row mb-5">
+    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+           asp-area="Admin"
+           asp-controller="User"
+           asp-action="All"
+           asp-route-currentPage="@previousPage"
+           asp-route-role="@Model.Role"
+           asp-route-searchTerm="@Model.SearchTerm"
+           asp-route-sorting="@((int)Model.Sorting)"><<</a>
+    </div>
+
+    @{
+        var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
+        !Model.Users.Any();
+    }
+
+    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-primary
+           @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
+           asp-area="Admin"
+           asp-controller="User"
+           asp-action="All"
+           asp-route-currentPage="@(Model.CurrentPage + 1)"
+           asp-route-role="@Model.Role"
+           asp-route-searchTerm="@Model.SearchTerm"
+           asp-route-sorting="@((int)Model.Sorting)">>></a>
+    </div>
+</div>
+
+@if (!Model.Users.Any())
+{
+    <h2 class="text-center">No users found by the given criteria!</h2>
+}
+
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><label>Username</label></th>
+                <th><label>Email</label></th>
+                <th><label>First Name</label></th>
+                <th><label>Last Name</label></th>
+                <th><label>Phone Number</label></th>
+                <th><label>Is Admin</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <partial name="_UserPartial" model="@user" />
+
+            }
+        </tbody>
+    </table>
+</div>
+
+<partial name="_UserModalPartial" />
+
+@section Scripts {
+
+    <script src="~/js/admin/users.js" asp-append-version="true"></script>
+}

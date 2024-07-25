@@ -1,0 +1,52 @@
+﻿#card-element {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px #214f21;
+    color: #214f21;
+    max-width: 400px;
+    margin: 20px 0 !important;
+}
+
+    #card-element:focus {
+        box-shadow: 2px 2px 10px #214f21;
+    }
+
+    #card-element label {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    #card-element .StripeElement {
+        height: 46px;
+        padding: 10px 14px;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #ffffff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+#card-errors {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}

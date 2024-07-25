@@ -1,0 +1,77 @@
+﻿@model AdminProductCreateFormModel
+
+@{
+    ViewBag.Title = "Create Product";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/productsCreate.css" asp-append-version="true" />
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="flexContainer row">
+    <div class="flexItem">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="@Model.Title"></label>
+                <input asp-for="@Model.Title" class="form-control" placeholder="Product name...">
+                <span asp-validation-for="@Model.Title" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Subtitle"></label>
+                <input asp-for="@Model.Subtitle" class="form-control" placeholder="Product subtitle...">
+                <span asp-validation-for="@Model.Subtitle" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Description"></label>
+                <textarea asp-for="@Model.Description" rows="10" class="form-control" placeholder="Product description..."></textarea>
+                <span asp-validation-for="@Model.Description" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Ingredients"></label>
+                <textarea asp-for="@Model.Ingredients" rows="10" class="form-control" placeholder="Product ingredients..."></textarea>
+                <span asp-validation-for="@Model.Ingredients" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.ProductCode"></label>
+                <input asp-for="@Model.ProductCode" class="form-control" placeholder="Product code..." />
+                <span asp-validation-for="@Model.ProductCode" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.ImageUrl"></label>
+                <textarea asp-for="@Model.ImageUrl" rows="2" class="form-control" placeholder="Image URL..."></textarea>
+                <span asp-validation-for="@Model.ImageUrl" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Quantity"></label>
+                <input type="number" asp-for="@Model.Quantity" class="form-control" />
+                <span asp-validation-for="@Model.Quantity" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Price"></label><span> ( @Model.Currency.CurrencySymbol )</span>
+                <input asp-for="@Model.Price" class="form-control" />
+                <span asp-validation-for="@Model.Price" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.CategoryId">Category:</label>
+                <select asp-for="@Model.CategoryId" class="form-control">
+                    <option value="@null" selected></option>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="@Model.CategoryId" class="small text-danger"></span>
+            </div>
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Create" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

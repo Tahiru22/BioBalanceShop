@@ -1,0 +1,13 @@
+﻿.flexContainer {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.flexItem {
+    width: 60%;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #edf7ed;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px #214f21;
+}

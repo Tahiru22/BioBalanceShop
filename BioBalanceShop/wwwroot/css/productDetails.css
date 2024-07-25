@@ -1,0 +1,55 @@
+﻿p {
+    font-size: 16px;
+    margin: 5px;
+}
+
+    p.productPrice {
+        font-size: 26px;
+        color: #6ab654;
+        font-weight: bold;
+    }
+
+    input {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        min-height: 40px;
+        margin: 10px
+    }
+
+    input[type="number"] {
+        max-width: 80px;
+    }
+
+    input[type="submit"] {
+        max-width: 200px;
+        position: relative;
+        top: -2px;
+    }
+
+.flex-container {
+    display: flex;
+    flex-flow: row wrap;
+    font-size: 16px;
+    margin: 20px auto;
+}
+
+.flex-item-left {
+    background-color: #ffffff;
+    padding: 20px;
+    flex: 50%;
+    text-align: center;
+}
+
+.flex-item-right {
+    background-color: #f1f1f1;
+    padding: 20px;
+    flex: 50%;
+    text-align: left;
+}
+
+@media (max-width: 800px) {
+    .flex-item-right, .flex-item-left {
+        flex: 100%;
+    }
+}

@@ -1,0 +1,42 @@
+﻿a.nav-link, button.nav-link {
+    display: inline-block;
+    padding: 10px 20px!important;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #214f21!important;
+}
+
+    a.nav-link:hover, button.nav-link:hover {
+        background-color: #214f21;
+        border: 1px solid #214f21;
+        color: #ffffff !important;
+    }
+
+    a.nav-link[title="Manage"] {
+        background-color: #214f21;
+        border: 1px solid #214f21;
+        color: #ffffff!important;
+        margin-right: 10px;
+    }
+
+        a.nav-link[title="Manage"]:hover {
+            background-color: #6ab654;
+            border: 2px solid #6ab654;
+            color: #ffffff !important;
+        }
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: #214f21;
+    color: #ffffff!important;
+    margin: 5px!important;
+}
+
+.nav-link.active {
+    border: 1px solid #214f21;
+}
+
+
+.nav-link.active:hover {
+    border: 1px solid #214f21;
+}

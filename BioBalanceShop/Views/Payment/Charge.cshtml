@@ -1,0 +1,72 @@
+﻿@model CheckoutFormModel
+
+@{
+    ViewBag.Title = "Pay";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/stripe.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/payment.css" asp-append-version="true" />
+}
+
+<h2 class="text-center">Payment</h2>
+<hr />
+
+<div class="flexContainer">
+    <div class="flexItemOrder">
+        <h2>Order Information</h2>
+        <div class="form-group">
+            <label>Items Total Amount:</label>
+            <p>
+                @if (Model.Order.Currency.CurrencyIsSymbolPrefix)
+                {
+                    @Model.Order.Currency.CurrencySymbol
+                }
+                @String.Format("{0:f2}", Model.Order.OrderAmount)
+                @if (!Model.Order.Currency.CurrencyIsSymbolPrefix)
+                {
+                    @Model.Order.Currency.CurrencySymbol
+                }
+            </p>
+        </div>
+        <div class="form-group">
+            <label>Shipping Fee:</label>
+            <p>
+                @if (Model.Order.Currency.CurrencyIsSymbolPrefix)
+                {
+                    @Model.Order.Currency.CurrencySymbol
+                }
+                @String.Format("{0:f2}", Model.Order.ShippingFee)
+                @if (!Model.Order.Currency.CurrencyIsSymbolPrefix)
+                {
+                    @Model.Order.Currency.CurrencySymbol
+                }
+            </p>
+        </div>
+        <div class="form-group">
+            <label>Total Order Amount:</label>
+            <p>
+                @if (Model.Order.Currency.CurrencyIsSymbolPrefix)
+                {
+                    @Model.Order.Currency.CurrencySymbol
+                }
+                @String.Format("{0:f2}", Model.Order.TotalOrderAmount)
+                @if (!Model.Order.Currency.CurrencyIsSymbolPrefix)
+                {
+                    @Model.Order.Currency.CurrencySymbol
+                }
+            </p>
+        </div>
+    </div>
+
+    <div class="flexItemPayment">
+        <partial name="_PaymentPartial" model="@Model.Order" />
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="~/js/stripe.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}

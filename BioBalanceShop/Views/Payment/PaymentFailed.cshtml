@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Payment Failed";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/messages.css" asp-append-version="true" />
+}
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <br>
+        <div class="row">
+            <div class="col-10">
+                <img src="~/images/PaymentFailed.png" alt="Payment Failed image" class="img-thumbnail" />
+                <div class="text-center">
+                    <h2>Payment Failed</h2>
+                    <h4 class="shopMsg">Sorry, your payment was not successful. Please try again or contact customer support.</h4>
+                </div>
+                <div class="text-center"><a asp-action="Index" asp-controller="Home" class="btn btn-primary btn-lg">Continue Shopping</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3"></div>
+</div>

@@ -1,0 +1,35 @@
+﻿@model AdminUserServiceModel
+
+<tr>
+    <td>
+        <label>@Model.UserName</label>
+    </td>
+    <td>
+        <label>@Model.Email</label>
+    </td>
+    <td>
+        <label>@Model.FirstName</label>
+    </td>
+    <td>
+        <label>@Model.LastName</label>
+    </td>
+    <td>
+        <label>@Model.PhoneNumber</label>
+    </td>
+    <td>
+        @if (Model.IsAdmin)
+        {
+            <label>✔</label>
+        }
+        else
+        {
+            <label class="text-center">❌</label>
+        }
+    </td>
+    <td>
+        <a asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
+    </td>
+    <td>
+        <button class="btn btn-danger mb-2 w-100 p-3 fw-bold openModalBtn" data-user="@Model.UserName" data-id="@Model.Id">Delete</button>
+    </td>
+</tr>

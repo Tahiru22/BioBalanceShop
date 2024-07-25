@@ -1,0 +1,18 @@
+﻿div.carousel-item img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+div.carousel-caption {
+    color: #214f21;
+    background-color: #f1f1f1;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+    div.carousel-caption h3, div.carousel-caption h5 {
+        margin: 5px auto;
+    }

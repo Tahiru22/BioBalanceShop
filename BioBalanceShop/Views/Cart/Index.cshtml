@@ -1,0 +1,61 @@
+﻿@model CartIndexModel
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/cart.css" asp-append-version="true" />
+}
+
+<h2 class="text-center">Your Shopping Cart</h2>
+<hr />
+
+@if (Model.Items.Any())
+{
+    <form asp-controller="Cart" asp-action="UpdateCart" id="cartForm" method="Post">
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th><label></label></th>
+                        <th><label>Product</label></th>
+                        <th><label>Unit Price</label></th>
+                        <th><label>Quantity </label></th>
+                        <th><label>Total Price</label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <partial name="_CartItemPartial" model="@item" />
+                    }
+                    <tr>
+                        <th>Order Total Price:</th>
+                        <td>
+                            @if (Model.CurrencyIsSymbolPrefix)
+                            {
+                                @Model.CurrencySymbol
+                            }
+                            @String.Format("{0:f2}", Model.TotalPrice)
+                            @if (!Model.CurrencyIsSymbolPrefix)
+                            {
+                                @Model.CurrencySymbol
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center">
+        </div>
+    </form>
+    <div class="text-center">
+        <input type="submit" form="cartForm" value="Update Cart" class="btn btn-primary" />
+        <input class="btn btn-primary" value="Proceed to Checkout" onclick="location.href='@Url.Action("Checkout", "Payment")'" />
+    </div>
+}
+else
+{
+    <p>Your cart is empty.</p>
+}

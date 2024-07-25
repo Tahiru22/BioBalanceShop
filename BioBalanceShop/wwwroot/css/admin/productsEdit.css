@@ -1,0 +1,26 @@
+﻿.flexContainer {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 20px;
+}
+
+.flexItem {
+    padding: 20px;
+}
+
+.flexItemLeft {
+    width: 40%;
+    text-align: center;
+    position: relative;
+}
+
+    .flexItemLeft img {
+        top: 0;
+    }
+
+    .flexItemRight {
+        width: 60%;
+        border: 1px solid #edf7ed;
+        border-radius: 5px;
+        box-shadow: 1px 1px 10px #214f21;
+    }

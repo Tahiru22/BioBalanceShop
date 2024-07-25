@@ -1,0 +1,24 @@
+﻿﻿@{
+    ViewData["Title"] = "Error";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/messages.css" asp-append-version="true" />
+}
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <br>
+        <div class="row">
+            <div class="col-10">
+                <img src="~/images/500InternalServerError.png" alt="500 Internal Server Error image" class="img-thumbnail" />
+                <div class="text-center">
+                    <h4 class="shopMsg">Oops... an error occurred while processing your request. Please try again</h4>
+                </div>
+                <div class="text-center"><a asp-action="Index" asp-controller="Home" class="btn btn-primary btn-lg">Continue Shopping</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3"></div>
+</div>

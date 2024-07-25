@@ -1,0 +1,48 @@
+﻿@model IEnumerable<HomeIndexProductModel>
+
+@{
+    ViewData["Title"] = "Bio Balance - Shop Healthy Products";
+    var products = Model.ToList();
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+}
+
+@if (!products.Any())
+{
+    <div class="mt-4 p-5 bg-light">
+        <h1 class="display-4">Welcome to the Bio Balance Shop!</h1>
+        <p class="lead">
+            There are currently no products in the shop
+        </p>
+    </div>
+}
+
+<div class="mb-5"></div>
+
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-interval="5000">
+    <div class="carousel-inner">
+        @for (int i = 0; i < products.Count(); i++)
+        {
+            var product = products[i];
+            <div class="carousel-item @(i == 0 ? "active" : string.Empty)">
+                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" asp-route-productInfo="@product.GetProductInfo()">
+                    <img class="d-block w-100" heigh="500" width="300" src="@product.ImageUrl" alt="@product.Title">
+                    <div class="carousel-caption d-none d-md-block">
+                    <h3>@product.Title</h3>
+                    <h5>@product.Subtitle</h5>
+                </div>
+                </a>
+            </div>
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color:#214f21; opacity:0.8"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true" style="background-color:#214f21; opacity:0.8"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

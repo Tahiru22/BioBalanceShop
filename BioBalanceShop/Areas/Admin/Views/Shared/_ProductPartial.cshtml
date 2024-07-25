@@ -1,0 +1,36 @@
+﻿@model AdminProductServiceModel
+@inject IProductService adminProductService
+
+<tr>
+    <td>
+        <label><img class="card-img-top" src="@Model.ImageUrl" alt="Product Image" width="100" height="100"></label>
+    </td>
+    <td>
+        <label>@Model.ProductCode</label>
+    </td>
+    <td>
+        <label>@Model.Title</label>
+    </td>
+    <td>
+        <label>@Model.Quantity</label>
+    </td>
+    <td>
+        <label>
+            @if (Model.Currency.CurrencyIsSymbolPrefix)
+            {
+                @Model.Currency.CurrencySymbol
+            }
+            @String.Format("{0:f2}", Model.Price)
+            @if (!Model.Currency.CurrencyIsSymbolPrefix)
+            {
+                @Model.Currency.CurrencySymbol
+            }
+        </label>
+    </td>
+    <td>
+        <a asp-area="Admin" asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Edit</a>
+    </td>
+    <td>
+        <button class="btn btn-danger mb-2 w-100 p-3 fw-bold openModalBtn" data-product="@Model.Title" data-id="@Model.Id">Delete</button>
+    </td>
+</tr>

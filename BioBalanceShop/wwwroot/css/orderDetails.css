@@ -1,0 +1,11 @@
+﻿.container {
+    display: flex;
+    flex-flow: row wrap;
+    width: 90%;
+    margin: auto;
+}
+
+img {
+    max-height: 100px !important;
+    width: auto !important;
+}
